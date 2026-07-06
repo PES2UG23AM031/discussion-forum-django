@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% block title %}{{ question.title }} | Discussion Forum{% endblock %}
+
+{% block content %}
+<article class="panel mb-4">
+    <div class="d-flex flex-column flex-md-row justify-content-between gap-3">
+        <div>
+            <a href="{{ question.topic.get_absolute_url }}" class="small text-decoration-none">&larr; {{ question.topic.name }}</a>
+            <h1 class="h3 mt-2">{{ question.title }}</h1>
+            <p class="text-muted mb-0">Asked by <a href="{% url 'profile' question.author.username %}">{{ question.author.username }}</a> on {{ question.created_at|date:"M d, Y h:i A" }}</p>
+        </div>
+        {% if user == question.author %}
+            <div class="action-row">
+                <a class="btn btn-outline-primary btn-sm" href="{% url 'edit_question' question.pk %}">Edit</a>
+                <a class="btn btn-outline-danger btn-sm" href="{% url 'delete_question' question.pk %}">Delete</a>
+            </div>
+        {% endif %}
+    </div>
+    <hr>
+    <p class="question-body">{{ question.description|linebreaks }}</p>
+</article>
+
+<section class="mb-4">
+    <h2 class="h4 mb-3">Replies</h2>
+    {% for reply in replies %}
+        <div class="reply-card">
+            <div class="d-flex justify-content-between align-items-start gap-3">
+                <div>
+                    <strong><a href="{% url 'profile' reply.author.username %}">{{ reply.author.username }}</a></strong>
+                    <span class="text-muted small"> replied on {{ reply.created_at|date:"M d, Y h:i A" }}</span>
+                </div>
+                {% if user == reply.author %}
+                    <div class="action-row">
+                        <a class="btn btn-outline-primary btn-sm" href="{% url 'edit_reply' reply.pk %}">Edit</a>
+                        <a class="btn btn-outline-danger btn-sm" href="{% url 'delete_reply' reply.pk %}">Delete</a>
+                    </div>
+                {% endif %}
+            </div>
+            <p class="mb-0 mt-2">{{ reply.content|linebreaks }}</p>
+        </div>
+    {% empty %}
+        <p class="text-muted">No replies yet.</p>
+    {% endfor %}
+</section>
+
+<section class="panel">
+    <h2 class="h5 mb-3">Add a Reply</h2>
+    {% if user.is_authenticated %}
+        <form method="post" novalidate>
+            {% csrf_token %}
+            {% include 'forum_app/includes/form_fields.html' with form=reply_form %}
+            <button class="btn btn-primary" type="submit">Post Reply</button>
+        </form>
+    {% else %}
+        <p class="mb-0"><a href="{% url 'login' %}">Login</a> to post a reply.</p>
+    {% endif %}
+</section>
+{% endblock %}

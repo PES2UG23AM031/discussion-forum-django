@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block title %}Edit Reply | Discussion Forum{% endblock %}
+
+{% block content %}
+<div class="form-shell">
+    <h1 class="h3 mb-3">Edit Reply</h1>
+    <form method="post" novalidate>
+        {% csrf_token %}
+        {% include 'forum_app/includes/form_fields.html' with form=form %}
+        <button class="btn btn-primary" type="submit">Update Reply</button>
+        <a class="btn btn-outline-secondary" href="{{ reply.question.get_absolute_url }}">Cancel</a>
+    </form>
+</div>
+{% endblock %}

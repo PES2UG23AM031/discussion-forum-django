@@ -1,0 +1,14 @@
+{% for question in results %}
+    <article class="list-card">
+        <h2 class="h5 mb-1"><a href="{{ question.get_absolute_url }}">{{ question.title }}</a></h2>
+        <p class="text-muted mb-2">{{ question.description|truncatewords:30 }}</p>
+        <small class="text-muted">{{ question.topic.name }} | {{ question.reply_count }} replies | {{ question.created_at|date:"M d, Y h:i A" }}</small>
+    </article>
+{% empty %}
+    {% if query %}
+        <div class="empty-state">
+            <h2 class="h5">No matching questions</h2>
+            <p>Try a different keyword.</p>
+        </div>
+    {% endif %}
+{% endfor %}

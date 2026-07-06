@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% block title %}Home | Discussion Forum{% endblock %}
+
+{% block content %}
+<section class="page-header mb-4">
+    <div>
+        <p class="text-uppercase text-primary fw-semibold small mb-1">Community Q&A</p>
+        <h1 class="h2 mb-2">Browse Discussion Topics</h1>
+        <p class="text-muted mb-0">Choose a topic, ask questions, and reply to other students.</p>
+    </div>
+    {% if user.is_authenticated %}
+        <a class="btn btn-primary" href="{% url 'create_topic' %}">Create Topic</a>
+    {% endif %}
+</section>
+
+<div class="row g-4">
+    <div class="col-lg-8">
+        <div class="row g-3">
+            {% for topic in topics %}
+                <div class="col-md-6">
+                    <div class="card topic-card h-100">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-start gap-3">
+                                <h2 class="h5 mb-2"><a href="{{ topic.get_absolute_url }}">{{ topic.name }}</a></h2>
+                                <span class="badge text-bg-primary">{{ topic.post_count }} posts</span>
+                            </div>
+                            <p class="text-muted mb-3">{{ topic.description|default:'No description added yet.'|truncatewords:24 }}</p>
+                            <small class="text-muted">Created by {{ topic.created_by.username }}</small>
+                        </div>
+                    </div>
+                </div>
+            {% empty %}
+                <div class="col-12">
+                    <div class="empty-state">
+                        <h2 class="h5">No topics yet</h2>
+                        <p>Create the first topic to start the discussion.</p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    <aside class="col-lg-4">
+        <div class="panel">
+            <h2 class="h5 mb-3">Latest Questions</h2>
+            {% for question in latest_questions %}
+                <div class="mini-item">
+                    <a href="{{ question.get_absolute_url }}" class="fw-semibold">{{ question.title }}</a>
+                    <div class="text-muted small">{{ question.topic.name }} by {{ question.author.username }}</div>
+                </div>
+            {% empty %}
+                <p class="text-muted mb-0">No questions have been posted.</p>
+            {% endfor %}
+        </div>
+    </aside>
+</div>
+{% endblock %}

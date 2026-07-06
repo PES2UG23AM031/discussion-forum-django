@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block title %}{{ profile_user.username }} | Discussion Forum{% endblock %}
+
+{% block content %}
+<section class="panel mb-4">
+    <div class="d-flex flex-column flex-md-row justify-content-between gap-3">
+        <div>
+            <h1 class="h3 mb-1">{{ profile_user.username }}</h1>
+            <p class="text-muted mb-0">{{ profile_user.email|default:'No email provided' }}</p>
+            <p class="text-muted mb-0">Joined {{ profile_user.date_joined|date:"M d, Y" }}</p>
+        </div>
+        <div class="stats-grid">
+            <div><strong>{{ total_questions }}</strong><span>Questions</span></div>
+            <div><strong>{{ total_replies }}</strong><span>Replies</span></div>
+        </div>
+    </div>
+</section>
+
+<h2 class="h4 mb-3">Questions Posted</h2>
+{% for question in questions %}
+    <article class="list-card">
+        <h3 class="h5 mb-1"><a href="{{ question.get_absolute_url }}">{{ question.title }}</a></h3>
+        <p class="text-muted mb-1">{{ question.topic.name }} | {{ question.created_at|date:"M d, Y h:i A" }}</p>
+        <p class="mb-0">{{ question.description|truncatewords:24 }}</p>
+    </article>
+{% empty %}
+    <p class="text-muted">This user has not posted questions yet.</p>
+{% endfor %}
+{% endblock %}

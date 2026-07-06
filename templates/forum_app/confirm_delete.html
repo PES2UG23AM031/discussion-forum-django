@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block title %}Confirm Delete | Discussion Forum{% endblock %}
+
+{% block content %}
+<div class="form-shell">
+    <h1 class="h3 mb-3">Confirm Delete</h1>
+    <p>Are you sure you want to delete <strong>{{ object }}</strong>?</p>
+    <form method="post">
+        {% csrf_token %}
+        <button class="btn btn-danger" type="submit">Delete</button>
+        <a class="btn btn-outline-secondary" href="{{ cancel_url }}">Cancel</a>
+    </form>
+</div>
+{% endblock %}

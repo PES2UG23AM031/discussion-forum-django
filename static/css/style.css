@@ -1,0 +1,153 @@
+:root {
+    --page-bg: #f5f7fb;
+    --text-strong: #1f2937;
+    --muted: #6b7280;
+    --border: #dbe3ef;
+}
+
+html,
+body {
+    min-height: 100%;
+}
+
+body {
+    background: var(--page-bg);
+    color: var(--text-strong);
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.navbar .form-control {
+    max-width: 520px;
+}
+
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.5rem;
+    background: #ffffff;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+}
+
+.card,
+.panel,
+.list-card,
+.reply-card,
+.auth-card,
+.form-shell,
+.empty-state {
+    background: #ffffff;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    box-shadow: 0 10px 24px rgba(31, 41, 55, 0.06);
+}
+
+.topic-card {
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.topic-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 30px rgba(31, 41, 55, 0.1);
+}
+
+.panel,
+.auth-card,
+.form-shell,
+.empty-state {
+    padding: 1.5rem;
+}
+
+.auth-card,
+.form-shell {
+    max-width: 680px;
+    margin: 0 auto;
+}
+
+.list-card,
+.reply-card {
+    padding: 1.25rem;
+    margin-bottom: 1rem;
+}
+
+.mini-item {
+    padding: 0.9rem 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.mini-item:last-child {
+    border-bottom: 0;
+    padding-bottom: 0;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(110px, 1fr));
+    gap: 0.75rem;
+    min-width: 240px;
+}
+
+.stats-grid div {
+    padding: 1rem;
+    background: #eef5ff;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.stats-grid strong {
+    display: block;
+    font-size: 1.6rem;
+}
+
+.stats-grid span {
+    color: var(--muted);
+}
+
+.question-body p,
+.reply-card p {
+    line-height: 1.7;
+}
+
+.action-row {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.form-control,
+.form-select,
+textarea,
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    display: block;
+    width: 100%;
+    padding: 0.65rem 0.8rem;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+}
+
+.site-footer {
+    color: #ffffff;
+    background: #0f172a;
+}
+
+@media (max-width: 768px) {
+    .page-header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .stats-grid {
+        width: 100%;
+    }
+}
