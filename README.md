@@ -1,105 +1,129 @@
-# Discussion Forum
+# Discussion Forum using Django
 
-A beginner-friendly Django mini-project where users can register, create discussion topics, ask questions, reply to questions, search posts, and manage only their own content.
+A web-based discussion forum developed using **Python**, **Django**, **HTML**, **CSS**, **Bootstrap**, and **SQLite**. The application allows users to create discussion topics, post questions, reply to discussions, search content, and manage their own posts through a secure authentication system.
 
-## Complete Folder Structure
+---
+
+## Features
+
+- User Registration and Login
+- User Authentication using Django Authentication System
+- Create and Manage Discussion Topics
+- Post Questions
+- Reply to Questions
+- Edit and Delete Own Posts
+- Search Questions
+- User Profile Management
+- Responsive Bootstrap 5 Interface
+
+---
+
+## Tech Stack
+
+- Python
+- Django
+- HTML5
+- CSS3
+- Bootstrap 5
+- SQLite
+
+---
+
+## Project Structure
 
 ```text
 Discussion Forum/
-|-- manage.py
-|-- requirements.txt
-|-- README.md
-|-- discussion_forum/
-|   |-- __init__.py
-|   |-- settings.py
-|   |-- urls.py
-|   |-- wsgi.py
-|   `-- asgi.py
-|-- forum_app/
-|   |-- __init__.py
-|   |-- admin.py
-|   |-- apps.py
-|   |-- forms.py
-|   |-- models.py
-|   |-- urls.py
-|   |-- views.py
-|   `-- migrations/
-|       `-- __init__.py
-|-- templates/
-|   |-- base.html
-|   |-- forum_app/
-|   |   |-- home.html
-|   |   |-- topic_detail.html
-|   |   |-- question_detail.html
-|   |   |-- question_form.html
-|   |   |-- reply_form.html
-|   |   |-- confirm_delete.html
-|   |   |-- profile.html
-|   |   `-- search_results.html
-|   `-- registration/
-|       |-- login.html
-|       `-- register.html
-`-- static/
-    |-- css/
-    |   `-- style.css
-    |-- js/
-    |   `-- main.js
-    `-- images/
-        `-- .gitkeep
+│── manage.py
+│── requirements.txt
+│── README.md
+│
+├── discussion_forum/
+├── forum_app/
+├── templates/
+├── static/
 ```
 
-## Setup Instructions
+---
 
-1. Open a terminal in the project folder:
+## Installation
 
-   ```bash
-   cd "Discussion Forum"
-   ```
+### Clone the Repository
 
-2. Create and activate a virtual environment:
+```bash
+git clone https://github.com/PES2UG23AM031/discussion-forum-django.git
+cd discussion-forum-django
+```
 
-   ```bash
-   python -m venv .venv
-   .venv\Scripts\activate
-   ```
+### Create Virtual Environment
 
-3. Install dependencies:
+```bash
+python -m venv .venv
+```
 
-   ```bash
-   pip install -r requirements.txt
-   ```
+### Activate Environment
 
-4. Create database tables:
+Windows
 
-   ```bash
-   python manage.py makemigrations
-   python manage.py migrate
-   ```
+```bash
+.venv\Scripts\activate
+```
 
-5. Create an admin user:
+Linux/Mac
 
-   ```bash
-   python manage.py createsuperuser
-   ```
+```bash
+source .venv/bin/activate
+```
 
-6. Start the development server:
+### Install Dependencies
 
-   ```bash
-   python manage.py runserver
-   ```
+```bash
+pip install -r requirements.txt
+```
 
-7. Visit:
+### Run Migrations
 
-   ```text
-   http://127.0.0.1:8000/
-   ```
+```bash
+python manage.py makemigrations
+python manage.py migrate
+```
 
-## Main Features
+### Create Superuser
 
-- Registration, login, logout, and password hashing through Django authentication.
-- Topic creation and topic list with question counts.
-- Questions with title, description, author, timestamp, edit, and delete permissions.
-- Replies with author, content, timestamp, edit, and delete permissions.
-- Search by question title or description.
-- User profile with username, email, join date, question count, and reply count.
-- Bootstrap 5 responsive interface with reusable template inheritance.
+```bash
+python manage.py createsuperuser
+```
+
+### Run Server
+
+```bash
+python manage.py runserver
+```
+
+Open:
+
+```
+http://127.0.0.1:8000/
+```
+
+---
+
+## Future Enhancements
+
+- Email Notifications
+- Image Upload Support
+- Like and Comment System
+- Rich Text Editor
+- Pagination
+- Dark Mode
+
+---
+
+## Author
+
+**Devi Sai Sanjana N**
+
+GitHub:
+https://github.com/PES2UG23AM031
+
+LinkedIn:
+https://linkedin.com/in/sanjana-n-8267a6340
